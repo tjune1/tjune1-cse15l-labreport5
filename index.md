@@ -1,4 +1,5 @@
 # Lab 5 Report - Jun T.
+## Part 1
 **Student:**
 
 **What environment are you using (computer, operating system, web browser, terminal/editor, and so on)?**
@@ -55,13 +56,27 @@ my test:
 
 
 **TA:**
-Hello! It seems like your reverseinplace has some indexing problem. Here are some hints that I have for you:
+Hello! It seems like there are some indexing problems in your reverseinplace method. Here are some helpful hints that I have for you:
 ```
 static void reverseInPlace(int[] arr) {
   //consider the condition here, would it be just arr.length?
   for(int i = 0; i < arr.length; i += 1) {
-    //you may want to swap arr[i] with arr
+    //you may want to swap arr[i] with arr[arr.length - i - 1]
     arr[i] = arr[arr.length - i - 1];
   }
 }
 ```
+Other commands are correct. Good luck!
+
+**Student:**
+Thanks a lot for your response. I fixed my method and got the correct output!
+
+code:
+![Image](code.png)
+
+test:
+![Image](test1.png)
+
+
+## Part 2
+I learned from week 7 that for any command, if the command run successfully, then $?(the exit code for whatever command you just run) would equals to 0.
