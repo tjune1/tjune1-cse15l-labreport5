@@ -42,16 +42,26 @@ Tests run: 2,  Failures: 1
 
 my code:
 ![Image](mycode.png)
+
 bash:
 ![Image](bash.png)
+
 error message:
 ![Image](error.png)
+
 my test:
 ![Image](test.png)
 
 
 
 **TA:**
-Hello! I would suggest you trying `java -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore ArrayTests` instead of `java -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore ArrayTest.java`. Here's a screenshot of how trying it will work:
-![Image](fixed.png)
-You're typing "ArrayTest.java" instead of "ArrayTests" in the end of your command.
+Hello! It seems like your reverseinplace has some indexing problem. Here are some hints that I have for you:
+```
+static void reverseInPlace(int[] arr) {
+  //consider the condition here, would it be just arr.length?
+  for(int i = 0; i < arr.length; i += 1) {
+    //you may want to swap arr[i] with arr
+    arr[i] = arr[arr.length - i - 1];
+  }
+}
+```
