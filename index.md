@@ -7,43 +7,51 @@ Mac and VSCode Terminal
 
 **Detail the symptom you're seeing. Be specific; include both what you're seeing and what you expected to see instead. Screenshots are great, copy-pasted terminal output is also great. Avoid saying “it doesn't work”.**
 
-I opened the folder I downloaded from GitHub through VSCode and ran the javac and java command, but I'm seeing one failure and I don't know why. I would expect to see all test cases passed.
+I opened the folder I downloaded from GitHub through VSCode, ran the javac and java command, and created a test.sh file to run bash, but I'm seeing one failure and I don't know why. I would expect to see all test cases passed.
 
 Terminal output: 
 ```
 JUnit version 4.13.2
-.E
-Time: 0.004
+.E.
+Time: 0.024
 There was 1 failure:
-1) initializationError(org.junit.runner.JUnitCommandLineParseResult)
-java.lang.IllegalArgumentException: Could not find class [ArrayTest.java]
-        at org.junit.runner.JUnitCommandLineParseResult.parseParameters(JUnitCommandLineParseResult.java:100)
-        at org.junit.runner.JUnitCommandLineParseResult.parseArgs(JUnitCommandLineParseResult.java:50)
-        at org.junit.runner.JUnitCommandLineParseResult.parse(JUnitCommandLineParseResult.java:44)
-        at org.junit.runner.JUnitCore.runMain(JUnitCore.java:72)
-        at org.junit.runner.JUnitCore.main(JUnitCore.java:36)
-Caused by: java.lang.ClassNotFoundException: ArrayTest.java
-        at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
-        at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
-        at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
-        at java.base/java.lang.Class.forName0(Native Method)
-        at java.base/java.lang.Class.forName(Class.java:467)
-        at org.junit.internal.Classes.getClass(Classes.java:42)
-        at org.junit.internal.Classes.getClass(Classes.java:27)
-        at org.junit.runner.JUnitCommandLineParseResult.parseParameters(JUnitCommandLineParseResult.java:98)
-        ... 4 more
+1) testReverseInPlace(ArrayTests)
+arrays first differed at element [2]; expected:<3> but was:<4>
+        at org.junit.internal.ComparisonCriteria.arrayEquals(ComparisonCriteria.java:78)
+        at org.junit.internal.ComparisonCriteria.arrayEquals(ComparisonCriteria.java:28)
+        at org.junit.Assert.internalArrayEquals(Assert.java:534)
+        at org.junit.Assert.assertArrayEquals(Assert.java:418)
+        at org.junit.Assert.assertArrayEquals(Assert.java:429)
+        at ArrayTests.testReverseInPlace(ArrayTests.java:9)
+        ... 32 trimmed
+Caused by: java.lang.AssertionError: expected:<3> but was:<4>
+        at org.junit.Assert.fail(Assert.java:89)
+        at org.junit.Assert.failNotEquals(Assert.java:835)
+        at org.junit.Assert.assertEquals(Assert.java:120)
+        at org.junit.Assert.assertEquals(Assert.java:146)
+        at org.junit.internal.ExactComparisonCriteria.assertElementsEqual(ExactComparisonCriteria.java:8)
+        at org.junit.internal.ComparisonCriteria.arrayEquals(ComparisonCriteria.java:76)
+        ... 38 more
 
 FAILURES!!!
-Tests run: 1,  Failures: 1
+Tests run: 2,  Failures: 1
 ```
+
 
 **Detail the failure-inducing input and context. That might mean any or all of the command you're running, a test case, command-line arguments, working directory, even the last few commands you ran. Do your best to provide as much context as you can.**
 
-This is the screenshot of all the command I'm running:
-![Image](Error.png)
-
+my code:
+![Image](mycode.png)
+bash:
+![Image](bash.png)
+error message:
+![Image](error.png)
+my test:
+![Image](test.png)
 
 
 
 **TA:**
-Hello! I would suggest you trying `java -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore ArrayTests` instead of `java -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore ArrayTest.java`
+Hello! I would suggest you trying `java -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore ArrayTests` instead of `java -cp .:lib/hamcrest-core-1.3.jar:lib/junit-4.13.2.jar org.junit.runner.JUnitCore ArrayTest.java`. Here's a screenshot of how trying it will work:
+![Image](fixed.png)
+You're typing "ArrayTest.java" instead of "ArrayTests" in the end of your command.
