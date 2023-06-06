@@ -72,9 +72,11 @@ Other commands are correct. Good luck!
 Thanks a lot for your response. I fixed my method and got the correct output!
 
 code:
+
 ![Image](code.png)
 
 test:
+
 ![Image](test1.png)
 
 
